@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap');
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 1.4rem;
+    font-family: "Red Hat Text", sans-serif;
+    color: white;
+    min-height: 100vh;
+    background: url(pattern-hills.svg) no-repeat bottom/contain, url(bg-stars.svg), linear-gradient(to bottom, #191a24, #261e2f);
+    position: relative;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 14.1rem 0 auto;
+    padding: 0 2.4rem;
+}
+
+.container h1 {
+    font-size: clamp(1.8rem, 5vw, 2.2rem);
+    letter-spacing: clamp(0.3em, 5vw, 0.275em);
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.countdown {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4rem;
+}
+
+.flip-clock {
+    font-size: clamp(3.5rem, 5vw, 7.8rem);
+    font-weight: 800;
+    color: #fb6087;
+    line-height: 0;
+    width: calc(1vw + 1.843em);
+    height: calc(1vw + 1.759em);
+    display: flex;
+    position: relative;
+    perspective: 350px;
+    /* Set perspective for 3D effect */
+    border-radius: calc(0.25vw + 0.4rem);
+    box-shadow: 0 0.14em 0 #191a24;
+}
+
+.flip-clock:not(:last-of-type) {
+    margin-right: calc(1vw + 1.76rem);
+}
+
+.flip-clock::before,
+.flip-clock::after {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: unset;
+    /* Remove previous alignment */
+    background-color: #343650;
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+    border: 1px solid #191a24;
+}
+
+.flip-clock::before {
+    content: attr(data-current-number);
+    /* Set content to the current number */
+    bottom: 0;
+    /* Align to the bottom */
+    align-items: flex-start;
+    border-radius: 0 0 calc(0.25vw + 0.4rem) calc(0.25vw + 0.4rem);
+    border-top: none;
+    /* Remove top border */
+}
+
+.flip-clock::after {
+    content: attr(data-next-number);
+    /* Set content to the next number */
+    top: 0;
+    /* Align to the top */
+    align-items: flex-end;
+    border-radius: calc(0.25vw + 0.4rem) calc(0.25vw + 0.4rem) 0 0;
+    border-bottom: none;
+    background-color: #2d2f45;
+    color: #fb567f;
+}
+
+.flip-clock>* {
+    cursor: default;
+    /* Set cursor to default */
+    user-select: none;
+    /* Disable text selection */
+}
+
+.flip-clock__caption {
+    font-size: clamp(0.7rem, 1vw, 1.4rem);
+    color: #8486a9;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: calc(-1.56rem - 1vw);
+}
+
+.card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 50%;
+    transform-style: preserve-3d;
+    /* Enable 3D transformations */
+    transform-origin: bottom;
+    /* Set transformation origin */
+    transform: rotateX(0);
+    /* Set initial rotation */
+    transition: transform 0.7s ease-in;
+    /* Set transition for transform */
+}
+
+.card.flipped {
+    transform: rotateX(-180deg);
+    /* Rotate card on flip */
+}
+
+.card-face {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: unset;
+    /* Remove previous alignment */
+    position: absolute;
+    /* Position absolutely */
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    backface-visibility: hidden;
+    /* Hide backface when not visible */
+}
+
+.card-face__front,
+.card-face__back {
+    background-color: #343650;
+    border: 1px solid #191a24;
+}
+
+.card-face__front {
+    align-items: flex-end;
+    border-radius: calc(0.25vw + 0.4rem) calc(0.25vw + 0.4rem) 0 0;
+    border-bottom: none;
+    background-color: #2d2f45;
+    color: #fb567f;
+}
+
+.card-face__back {
+    align-items: flex-start;
+    transform: rotateX(180deg);
+    /* Rotate back face */
+    border-radius: 0 0 calc(0.25vw + 0.4rem) calc(0.25vw + 0.4rem);
+    border-top: none;
+}
+
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10rem 0;
+    color: #8486a9;
+    font-size: clamp(1rem, 5vw, 2rem);
+    text-align: center;
+}
+
+.footer__list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+    margin-bottom: 3rem;
+    margin-top: 3rem;
+
+}
+
+.footer__item:not(:last-of-type) {
+    margin-right: 3.2rem;
+}
+
+.footer__link svg>path {
+    transition: fill 0.2s ease;
+}
+
+.footer__link:hover svg>path {
+    fill: #fb6087;
+}
